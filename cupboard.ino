@@ -23,17 +23,15 @@ void loop() {
     digitalWrite(led,HIGH);
     delay(60000);
     //Serial.println("open");
-  } 
-  else {
+  } else {
     digitalWrite(led,LOW);
     //Serial.println("closed");
   }
 
 /*
-  if (distance >= 200 || distance <= 0){
+  if (distance >= 200 || distance <= 0) {
     Serial.println("Out of range");
-  } 
-  else {
+  } else {
     Serial.print(distance);
     Serial.println(" cm");
   }
