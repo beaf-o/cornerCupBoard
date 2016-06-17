@@ -7,10 +7,11 @@ void setup() {
   //Serial.begin (9600); // Trinket has no Serial interface  https://learn.adafruit.com/trinket-fake-usb-serial/how-it-works
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-  pinMode(led, OUTPUT);
+  pinMode(upperLed, OUTPUT);
+  pinMode(lowerLed, OUTPUT);
 
   switchOff();
-  init();
+  startSequence();
 }
 
 void loop() {
@@ -43,7 +44,7 @@ void loop() {
   delay(100);
 }
 
-void init() {
+void startSequence() {
   for (int i; i < 3; i++) {
     digitalWrite(upperLed, HIGH);
     delay(1000);
