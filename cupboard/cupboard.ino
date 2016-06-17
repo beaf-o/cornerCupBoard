@@ -1,30 +1,34 @@
-#define trigPin 0
-#define echoPin 2
-#define led 1
+#define trigPin 2
+#define echoPin 0
+#define upperLed 1
+#define lowerLed 3
 
 void setup() {
   //Serial.begin (9600); // Trinket has no Serial interface  https://learn.adafruit.com/trinket-fake-usb-serial/how-it-works
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
   pinMode(led, OUTPUT);
+
+  switchOff();
+  init();
 }
 
 void loop() {
   long duration, distance;
-  digitalWrite(trigPin, LOW);  // Added this line
-  delayMicroseconds(2); // Added this line
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
-  //  delayMicroseconds(1000); - Removed this line
-  delayMicroseconds(10); // Added this line
+  
+  delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
   duration = pulseIn(echoPin, HIGH);
   distance = (duration/2) / 29.1;
   if (distance >= 4) {
-    digitalWrite(led,HIGH);
-    delay(60000);
+    switchOn();
+    delay(10000);
     //Serial.println("open");
   } else {
-    digitalWrite(led,LOW);
+    switchOff();
     //Serial.println("closed");
   }
 
@@ -37,4 +41,27 @@ void loop() {
   }
 */
   delay(100);
+}
+
+void init() {
+  for (int i; i < 3; i++) {
+    digitalWrite(upperLed, HIGH);
+    delay(1000);
+    digitalWrite(upperLed, LOW);
+    digitalWrite(lowerLed, HIGH);
+    delay(1000);
+    digitalWrite(lowerLed, LOW);
+  }
+}
+
+void switchOn() {
+  digitalWrite(upperLed, HIGH);
+  delay(300);
+  digitalWrite(lowerLed, HIGH);
+}
+
+void switchOff() {
+  digitalWrite(upperLed, LOW);
+  delay(300);
+  digitalWrite(lowerLed, LOW);
 }
