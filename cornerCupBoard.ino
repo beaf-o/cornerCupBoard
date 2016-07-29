@@ -45,12 +45,12 @@ void loop() {
 }
 
 void startSequence() {
-  for (int i; i < 3; i++) {
+  for (int i = 0; i < 10; i++) {
     digitalWrite(upperLed, HIGH);
-    delay(1000);
+    delay(100);
     digitalWrite(upperLed, LOW);
     digitalWrite(lowerLed, HIGH);
-    delay(1000);
+    delay(100);
     digitalWrite(lowerLed, LOW);
   }
 }
